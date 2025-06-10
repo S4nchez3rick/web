@@ -357,31 +357,38 @@ footer h3 {
         display: block;
     }
 
-    .menu .navbar {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-in-out;
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background-color: #1e2a38;
-        z-index: 999;
-    }
+     @media (max-width: 768px) {
+  /* Esconde el nav por defecto */
+  .menu .navbar {
+    display: none;
+    flex-direction: column;      /* para que los <li> queden en columna */
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: #1e2a38;
+    z-index: 999;
+  }
 
-    .menu .navbar ul {
-        flex-direction: column;
-        width: 100%;
-    }
+  /* Cuando tengan la clase .show, lo mostramos */
+  .menu .navbar.show {
+    display: flex;
+  }
 
-    .menu .navbar ul li a {
-        padding: 15px;
-        text-align: center;
-        width: 100%;
-        display: block;
-        border-top: 1px solid #333;
-    }
+  /* Ajusta tus <ul> y <li> para ocupar todo el ancho */
+  .menu .navbar ul {
+    flex-direction: column;
+    width: 100%;
+  }
+  .menu .navbar ul li a {
+    display: block;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #333;
+    color: #fff;
+  }
+}
+
 
     .content h1 {
         font-size: 32px;
@@ -686,4 +693,55 @@ footer h3 {
   #main-header .content { padding-top: 20px; padding-bottom: 14px; }
 }
 
+/*Movil*/
+/* el checkbox queda oculto siempre */
+#menu {
+  display: none;
+}
+
+/* el icono también oculto fuera de móvil */
+.menu-icono {
+  display: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  /* muestra el icono en móvil */
+  .menu-icono {
+    display: block;
+  }
+
+  /* por defecto escondemos el nav */
+  .menu .navbar {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;    /* debajo de la barra */
+    left: 0;
+    width: 100%;
+    background: #1e2a38;
+    z-index: 1000;
+  }
+
+  /* cuando el checkbox está CHECKED, mostramos el nav */
+  #menu:checked ~ .navbar {
+    display: flex;
+  }
+
+  /* estiliza tus enlaces para ocupar todo ancho */
+  .menu .navbar ul {
+    flex-direction: column;
+    width: 100%;
+  }
+  .menu .navbar ul li a {
+    display: block;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #333;
+    color: #fff;
+  }
+}
 
