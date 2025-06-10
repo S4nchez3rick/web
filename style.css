@@ -107,10 +107,18 @@ header{
 #menu{
     display: none;
 }
-
-.menu-icono{
-    width: 30px;
+.menu-icono {
+    width: 40px;    /* antes: 30px */
+    height: auto;   /* para mantener proporción */
 }
+
+/* tamano del menu en móvil */
+@media (max-width: 768px) {
+  .menu-icono {
+    width: 55px;
+  }
+}
+
 
 .menu label {
     cursor: pointer;
@@ -448,36 +456,37 @@ footer h3 {
     }
 }
 /* Botón flotante para volver arriba */
+/* Mostrar solo en móviles */
+@media (max-width: 768px) {
+  .scroll-to-top { display: block; }
+}
+
+/* Botón “volver arriba” */
 .scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 20px;
-    z-index: 1000;
-    font-size: 28px;
-    background: linear-gradient(135deg, #0e3d5d, #1c4f7b);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.4s ease;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: #333;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.scroll-to-top.visible {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
+.scroll-to-top.show {
+  display: flex;
+  opacity: 1;
 }
 
-.scroll-to-top:hover {
-    background: linear-gradient(135deg, #1c4f7b, #2d74a2);
-    transform: scale(1.1);
-}
+
 
 /* Mostrar solo en móviles */
 @media (max-width: 768px) {
