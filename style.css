@@ -747,32 +747,32 @@ footer h3 {
 /* cover touch devices + “narrow” viewports */
 @media (pointer: coarse), (max-width: 1024px) {
   /* muéstrame siempre la hamburguesa */
+ @media (pointer: coarse), (max-width: 1024px) {
+  /* icono hamburguesa */
   .menu-icono {
     display: block;
-    font-size: 2rem;
-    color: #fff;
-    cursor: pointer;
-    padding: 0.5rem;
   }
 
-  /* oculta el nav por defecto */
+  /* por defecto escondemos el nav */
   .menu .navbar {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 80px;
+    top: 80px;                          /* justo debajo de la barra */
     left: 0;
     width: 100%;
+    max-height: calc(100vh - 80px);     /* que no exceda el alto de pantalla */
+    overflow-y: auto;                   /* Scrolleo si hay muchos items */
     background: #1e2a38;
     z-index: 1000;
   }
 
-  /* si está “checked” el checkbox, muéstralo */
+  /* al chequear el checkbox, lo mostramos */
   #menu:checked ~ .navbar {
     display: flex;
   }
 
-  /* estilos para los enlaces en móvil */
+  /* estilo de los links en móvil */
   .menu .navbar ul {
     flex-direction: column;
     width: 100%;
@@ -785,4 +785,4 @@ footer h3 {
     color: #fff;
   }
 }
-
+}

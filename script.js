@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const email = document.getElementById("email");
   const copiedMsg = document.getElementById("copied-msg");
 
+  navbar.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      // desmarcamos el checkbox para cerrar el menú
+      menuCheckbox.checked = false;
+      // y opcional: quitamos la clase show para la animación
+      navbar.classList.remove('show');
+    });
+  });
   // Mostrar/ocultar el contenido extra al hacer clic
   btnInfo.addEventListener("click", (e) => {
     e.preventDefault();
@@ -29,16 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Cerrar el menú al dar clic en un enlace
-  const menuLinks = document.querySelectorAll(".menu .navbar a");
+  // 1) Seleccionamos todos los enlaces del menú
+const menuLinks = document.querySelectorAll('.menu .navbar a');
 
-  menuLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      if (menuCheckbox.checked) {
-        menuCheckbox.checked = false;
-        navbar.classList.remove("show");
-      }
-    });
+// 2) Al hacer clic en uno, desmarcamos el checkbox
+menuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    menuCheckbox.checked = false;
   });
+});
+
 
   // Copiar correo al portapapeles al hacer clic
   if (email && copiedMsg) {
@@ -152,20 +160,21 @@ function showBackButton() {
   }
 }
 
-// Botón para volver arriba en móviles
-const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+// Botón volver arriba
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+if (scrollToTopBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollToTopBtn.classList.add('visible');
+    } else {
+      scrollToTopBtn.classList.remove('visible');
+    }
+  });
+  scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300 && window.innerWidth <= 768) {
-    scrollToTopBtn.classList.add("visible");
-  } else {
-    scrollToTopBtn.classList.remove("visible");
-  }
-});
-
-scrollToTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
 
   // Collapsible sections (acordeón)
 document.querySelectorAll('.btn-toggle').forEach(btn => {
