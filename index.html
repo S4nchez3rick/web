@@ -1,130 +1,313 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trayectoria Profesional - Dr. José Martín Flores Albino</title>
+    <title>Trayectoria Académica - Dr. José Martín Flores Albino</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .cv-mosaic {
+            margin: 50px auto 30px auto;
+            max-width: 1200px;
+        }
+        .mosaic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+        .mosaic-card {
+            background: #f6f8fa;
+            border-radius: 18px;
+            padding: 34px 18px 22px 18px;
+            box-shadow: 0 3px 14px rgba(10,30,80,0.08);
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.19s, box-shadow 0.19s;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .mosaic-card h3 {
+            font-size: 1.25rem;
+            color: #193456;
+            margin-bottom: 10px;
+        }
+        .mosaic-card p {
+            font-size: 1rem;
+            color: #516078;
+            margin: 0;
+        }
+        .mosaic-card:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 26px rgba(10,30,80,0.14);
+            background: #eaf2fc;
+        }
+        .mosaic-section {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 3px 18px rgba(10,30,80,0.09);
+            margin: 28px auto 0 auto;
+            max-width: 800px;
+            padding: 38px 24px 28px 24px;
+            display: none;
+            animation: fadeIn 0.6s;
+        }
+        .mosaic-section.visible {
+            display: block;
+        }
+        .btn-back {
+            background: #0e3d5d;
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            padding: 10px 28px;
+            font-size: 1rem;
+            margin-bottom: 32px;
+            margin-top: -10px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-back:hover {
+            background: #1c4f7b;
+            transform: scale(1.06);
+        }
+        @media (max-width: 700px) {
+            .mosaic-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            .mosaic-card {
+                min-height: 100px;
+                padding: 22px 8px 18px 8px;
+            }
+            .mosaic-section {
+                max-width: 98vw;
+                padding: 16px 6px 20px 6px;
+            }
+        }
+    </style>
 </head>
-
-
 <body>
-    <header>
-        <div class="menu container">
-            <input type="checkbox" id="menu">
-            <label for="menu">
-                <img src="imagen/menu-icono.png" class="menu-icono" alt="Ícono del menú">
-            </label>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#inf">Experiencia Profesional</a></li>
-                    <li><a href="#inf1">Proyectos</a></li>
-                    <li><a href="#inf2">Habilidades</a></li>
-                    <li><a href="#inf3">Logros</a></li>
-                    <li><a href="#inf4">Motivación</a></li>
-                </ul>
-            </nav>
+
+<header>
+    <div class="menu container">
+        <nav class="navbar">
+            <ul>
+                <li><a href="#" onclick="showMosaic(event)">Inicio</a></li>
+                <li><a href="#" onclick="openSection('educacion')">Educación</a></li>
+                <li><a href="#" onclick="openSection('experiencia')">Experiencia</a></li>
+                <li><a href="#" onclick="openSection('docencia')">Docencia</a></li>
+                <li><a href="#" onclick="openSection('gestion')">Gestión</a></li>
+                <li><a href="#" onclick="openSection('cientifica')">Científica</a></li>
+                <li><a href="#" onclick="openSection('produccion')">Producción</a></li>
+                <li><a href="#" onclick="openSection('formacion')">Formación</a></li>
+                <li><a href="#" onclick="openSection('tesis')">Tesis</a></li>
+            </ul>
+        </nav>
+    </div>
+   <div id="main-header" class="header-content container">
+
+        <div class="content">
+            <h1>DR. José Martín Flores Albino</h1>
+            <p>
+                <strong>Doctor en Ciencias y Control Automático</strong><br>
+                <strong>Maestría en Ciencias de la Ingeniería (Control Automático)</strong>
+            </p>
         </div>
+    </div>
+</header>
 
-        <div class="header-content container">
-            <div class="content">
-                <h1>DR. José Martín Flores Albino</h1>
-                <p><strong>Doctor en ciencias y control Automático Maestría en ciencias de la ingeniería con especialidad en control Automático</strong></p>
-
-                <a href="#" class="btn-info">Más información</a>
-
-                <div id="extra-info" class="extra-info hidden">
-                    <h3>Sobre mí</h3>
-                    <p>
-                        Soy Doctor en Ingeniería con una sólida trayectoria en automatización industrial, diseño de sistemas eléctricos y electrónicos, así como en la enseñanza superior y la investigación científica.
-                    </p>
-                    <p>
-                        Me especializo en desarrollar soluciones tecnológicas innovadoras con un enfoque académico, y tengo un firme compromiso con la formación de las nuevas generaciones de profesionales de la ingeniería.
-                    </p>
-                    <p>
-                        📧 <strong>Contacto:</strong> 
-                        <span id="email" style="cursor: pointer; color: blue; text-decoration: underline;">jmfloresa@uaemex.mx</span>
-                        <span id="copied-msg" style="display: none; color: green; margin-left: 10px;">¡Copiado!</span>
-                    </p>
-                </div>
+<main>
+    <div class="cv-mosaic container" id="mosaic-view">
+        <div class="mosaic-grid">
+            <div class="mosaic-card" onclick="openSection('educacion')">
+                <h3>Educación</h3>
+                <p>Ver detalles</p>
+            </div>
+            <div class="mosaic-card" onclick="openSection('experiencia')">
+                <h3>Experiencia Profesional</h3>
+                <p>Ver detalles</p>
+            </div>
+            <div class="mosaic-card" onclick="openSection('docencia')">
+                <h3>Actividad Docente</h3>
+                <p>Ver detalles</p>
+            </div>
+            <div class="mosaic-card" onclick="openSection('gestion')">
+                <h3>Gestión Académica</h3>
+                <p>Ver detalles</p>
+            </div>
+            <div class="mosaic-card" onclick="openSection('cientifica')">
+                <h3>Actividad Científica</h3>
+                <p>Ver detalles</p>
+            </div>
+            <div class="mosaic-card" onclick="openSection('produccion')">
+                <h3>Producción Académica</h3>
+                <p>Ver detalles</p>
+            </div>
+            <div class="mosaic-card" onclick="openSection('formacion')">
+                <h3>Formación Complementaria</h3>
+                <p>Ver detalles</p>
+            </div>
+            <div class="mosaic-card" onclick="openSection('tesis')">
+                <h3>Tesis y Tutorías</h3>
+                <p>Ver detalles</p>
             </div>
         </div>
-    </header>
+    </div>
 
-    <main class="services container">
+    <!-- Secciones ocultas, visibles al dar clic -->
+    <section id="educacion" class="mosaic-section">
+        <button class="btn-back" onclick="showMosaic()">← Regresar</button>
+        <h2>Educación</h2>
+        <ul>
+            <li><strong>Doctor en Ciencias en Control Automático</strong> – CINVESTAV-IPN (2003) <em>(Cédula: 6823663)</em></li>
+            <li><strong>Maestro en Ciencias en Ingeniería Eléctrica</strong> – CINVESTAV-IPN (1998) <em>(Cédula: 6823662)</em></li>
+            <li><strong>Ingeniero en Comunicaciones y Electrónica</strong> – ESIME-IPN (1995) <em>(Cédula: 2682256)</em></li>
+        </ul>
+    </section>
+    <section id="experiencia" class="mosaic-section">
+        <button class="btn-back" onclick="showMosaic()">← Regresar</button>
+        <h2>Experiencia Profesional</h2>
+        <ul>
+            <li>Universidad Politécnica de Tulancingo (Profesor de Tiempo Completo, 2010-2011)</li>
+            <li>Tecnológico de Tulancingo (Profesor de Asignatura, 2011B)</li>
+            <li>Tecnológico de Estudios Superiores de Coacalco (Profesor de Tiempo Completo, 2006-2011)</li>
+            <li>Casa Plarre México S.A de C.V (Ingeniero de Diseño, 2006-2007)</li>
+            <li>Armada de México (Teniente de Navío del Servicio de Ingenieros, 2004-2007)</li>
+            <li>Secretaría de Marina – Armada de México (Ingeniero de Investigación, 2003)</li>
+            <li>Alas de América S.A de C.V (Técnico en Simuladores de Vuelo, 2002-2003)</li>
+            <li>SIEMENS S.A de C.V (Ingeniero en Automatización, 1997-1998)</li>
+            <li>Instituto Mexicano del Petróleo (Becario, Ingeniero en Electrónica, 1994-1995)</li>
+        </ul>
+    </section>
+    <section id="docencia" class="mosaic-section">
+        <button class="btn-back" onclick="showMosaic()">← Regresar</button>
+        <h2>Actividad Docente</h2>
+        <strong>Licenciatura:</strong>
+        <ul>
+            <li>Teoría del Control, Sistemas de Tiempo Real, Campos y Ondas Electromagnéticas, Electrónica Analógica, Circuitos Eléctricos, Variable Compleja, Lógica Secuencial y Combinatoria, Cálculo 1, Vectorial, Cálculo 2, Cálculo 3, Métodos Numéricos, Álgebra y Geometría Analítica, Metodología de la Investigación.</li>
+            <li>Ingeniería en Computación: Sistemas embebidos, Electromagnetismo, Electrónica Digital, Álgebra Lineal, Cálculo II.</li>
+        </ul>
+        <strong>Maestría:</strong>
+        <ul>
+            <li>Redes Neuronales Artificiales, Programación Avanzada, Dispositivos Semiconductores, Circuitos y Aplicaciones, Temas Selectos, Investigación.</li>
+        </ul>
+    </section>
+    <section id="gestion" class="mosaic-section">
+        <button class="btn-back" onclick="showMosaic()">← Regresar</button>
+        <h2>Gestión Académica y Cargos</h2>
+        <ul>
+            <li>Responsable del Laboratorio de Electrónica y Telecomunicaciones (2013-2018)</li>
+            <li>Responsable del Laboratorio de Inteligencia Artificial (2019-2025)</li>
+            <li>Miembro del H. Consejo Académico y de Gobierno CU-UAEM-VM (2020-2023)</li>
+            <li>Coordinador de la Carrera de Ing. en Sistemas y Comunicaciones (2023B)</li>
+            <li>Dictámenes y perfiles PRODEP, SNI, CA-96, entre otros.</li>
+        </ul>
+    </section>
+    <section id="cientifica" class="mosaic-section">
+        <button class="btn-back" onclick="showMosaic()">← Regresar</button>
+        <h2>Actividad Científica y Reconocimientos</h2>
+        <p>
+            Miembro de cuerpos académicos sobre Inteligencia Artificial y estudios socio-técnicos, línea de investigación en redes neuronales, robótica y procesamiento de imágenes.<br>
+            Docente de perfil deseable PRODEP-SEP y candidato al SNI-CONAHCyT.
+        </p>
+        <p>
+            <strong>Redes científicas:</strong><br>
+            <a href="https://scholar.google.com.mx/citations?user=Tmsb7hIAAAAJ&hl=es" target="_blank">Google Scholar</a> <br>
+            <a href="https://www.researchgate.net/profile/Jose_Flores_Albino" target="_blank">ResearchGate</a>
+        </p>
+    </section>
+    <section id="produccion" class="mosaic-section">
+        <button class="btn-back" onclick="showMosaic()">← Regresar</button>
+        <h2>Producción Académica</h2>
+        <strong>Artículos especializados:</strong>
+        <ul>
+            <li>2018: Plataformas de Software para el Desarrollo de Sistemas Robóticos</li>
+            <li>2022: Esteganografía de códigos QR embebidos por medio de un modelo neuronal generativo adversario</li>
+            <li>2021: Análisis de calidad en imágenes esteganográficas aplicando el algoritmo LSB en códigos QR embebidos</li>
+            <li>2020: Parametrización de terapia física para falanges de la mano humana</li>
+            <li>2019: Reducción de la dimensión de registros de evaluaciones académicas aplicando K-means</li>
+        </ul>
+        <strong>Material didáctico y ponencias:</strong>
+        <ul>
+            <li>2024: GEA Circuitos Eléctricos, GEA Electrónica Analógica, GEA ISC Sistemas Digitales</li>
+            <li>2021: GEA ICO Arquitectura de computadoras, GEA ICO Sistemas analógicos</li>
+            <li>2016-2023: Participación y organización de congresos, ponencias y conferencias (ROCC, ICCS, CORE, COMIA, CICyT, entre otros).</li>
+        </ul>
+    </section>
+    <section id="formacion" class="mosaic-section">
+        <button class="btn-back" onclick="showMosaic()">← Regresar</button>
+        <h2>Formación Complementaria</h2>
+        <strong>Cursos y diplomados:</strong>
+        <ul>
+            <li>2025: Curso ChatBots Asistentes Virtuales, Curso Creación de Recursos Didácticos en IA, Curso de Inteligencia Artificial Generativa en la enseñanza, Diplomado en IA Aplicada a la Docencia</li>
+            <li>2024: Curso Programación Avanzada Python, Curso Java Intermedio, Curso Deep Learning, Diplomado Competencias de Investigación para Académicos y Profesionales</li>
+            <li>2023: Curso Recursos y Herramientas de Evaluación, Certificación EC1307, Curso Python para Análisis de Datos</li>
+            <li>2021: Diplomado MS Teams, Certificado Elementos de IA</li>
+            <li>2009-2016: Diplomados IPN en Análisis y Solución de Problemas, Redes de Computadoras, Curso Automatización Industrial FIUNAM, entre otros.</li>
+        </ul>
+        <strong>Idiomas:</strong>
+        <ul>
+            <li>Diploma y Constancia CENLEX IPN</li>
+        </ul>
+    </section>
+    <section id="tesis" class="mosaic-section">
+        <button class="btn-back" onclick="showMosaic()">← Regresar</button>
+        <h2>Tesis, Tutorías y Otras Actividades</h2>
+        <ul>
+            <li><strong>Dirección de tesis de licenciatura y maestría</strong> (más de 10 dirigidas)</li>
+            <li><strong>Revisor de tesis de licenciatura y maestría</strong></li>
+            <li><strong>Tutorías grupales y asesorías disciplinares</strong></li>
+            <li><strong>Asesor de prácticas profesionales</strong></li>
+            <li><strong>Coordinación de academia y laboratorio</strong></li>
+        </ul>
+    </section>
+</main>
 
-        <div class="services">
-            <section id="inf">
-                <h2>Experiencia Profesional</h2>
-                <p>
-                    A lo largo de mi carrera, he tenido el privilegio de colaborar con instituciones de gran prestigio en los sectores académico, industrial y gubernamental, tales como: <br>
-                    Instituto Mexicano del Petróleo. <br>
-                    SIEMENS México S.A. de C.V. <br>
-                    Secretaría de Marina – Armada de México. <br>
-                    Tecnológico de Estudios Superiores de Coacalco. <br>
-                    Universidad Politécnica de Tulancingo. <br>
-                    Centro Universitario UAEM Valle de México.
-                </p>
-            </section>
-        </div>
+<footer>
+    <p>Elaborado por:</p>
+    <p>Islas Juárez José Antonio</p>
+    <p>Sánchez Rueda Erick Daniel</p>
+    <p>Santos Sánchez Juan Antonio</p>
+</footer>
 
-        <div class="services">
-            <section id="inf1">
-                <h2>Proyectos en los que ha participado</h2>
-                <p>
-                    <strong>Armada de México:</strong> Participación en proyectos de modernización y automatización de sistemas de maquinaria naval. <br>
-                    <strong>Ingeniero de Diseño:</strong> Desarrollo de un sistema de alimentación de respaldo para equipos de anestesia, garantizando su funcionalidad en situaciones críticas. <br>
-                    <strong>Docencia:</strong> Dirección de 6 tesis de licenciatura y 3 de maestría, centradas en ingeniería aplicada y automatización.
-                </p>
-            </section>
-        </div>
+<script>
+    // Oculta todas las secciones y muestra el mosaico
+    function showMosaic(event) {
+    if (event) event.preventDefault();
 
-        <div class="services">
-            <section id="inf2">
-                <h2>Habilidades Profesionales</h2>
-                <p>
-                    Mi perfil se caracteriza por un alto nivel de compromiso, organización y creatividad. Poseo experiencia consolidada en los campos de la docencia, investigación aplicada y desarrollo tecnológico en ingeniería eléctrica y automatización.
-                </p>
-            </section>
-        </div>
+    // Muestra el mosaico y el encabezado
+    const mosaic = document.getElementById('mosaic-view');
+    const header = document.getElementById('main-header');
+    if (mosaic) mosaic.style.display = 'block';
+    if (header) header.style.display = 'flex';
 
-        <div class="services">
-            <section id="inf3">
-                <h2>Logros</h2>
-                <p>
-                    A lo largo de mi trayectoria, he logrado cumplir con éxito diversos objetivos en cada una de las áreas en las que me he desempeñado, desde la gestión de proyectos tecnológicos hasta la formación de profesionales altamente capacitados.
-                </p>
-            </section>
-        </div>
+    // Oculta todas las secciones de detalle
+    document.querySelectorAll('.mosaic-section').forEach(sec => {
+        sec.classList.remove('visible');
+    });
 
-        <div class="services">
-            <section id="inf4">
-                <h2>Motivación</h2>
-                <p>
-                    Me apasiona el conocimiento científico y tecnológico, especialmente en las áreas de matemáticas, ingeniería y automatización. Mi vocación por la enseñanza me impulsa a compartir este conocimiento con las nuevas generaciones de ingenieros.
-                </p>
-            </section>
-        </div>
+    // Regresa la vista al inicio del mosaico
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-    </main>
 
-    <footer>
-        <p>Elaborado por:</p>
-        <p>Islas Juárez José Antonio</p>
-        <p>Sánchez Rueda Erick Daniel</p>
-        <p>Santos Sánchez Juan Antonio</p>
-    </footer>
+    // Oculta el mosaico y muestra solo la sección indicada
+    function openSection(id) {
+        document.getElementById('mosaic-view').style.display = 'none';
+        document.querySelectorAll('.mosaic-section').forEach(sec => {
+            sec.classList.remove('visible');
+        });
+        const section = document.getElementById(id);
+        if (section) {
+            section.classList.add('visible');
+           
+        }
+    }
 
-    <script src="script.js"></script>
-   <!-- Botón flotante mejorado para volver arriba -->
-<button id="scrollToTopBtn" class="scroll-to-top" title="Volver al inicio">
-  ↑
-</button>
-
+    // Inicial: solo mosaico visible
+    document.addEventListener('DOMContentLoaded', showMosaic);
+</script>
 </body>
-
 </html>
-
-
-

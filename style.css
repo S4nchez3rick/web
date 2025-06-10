@@ -483,3 +483,207 @@ footer h3 {
 .hidden-section {
   display: none !important;
 }
+
+/* --- Para los bloques colapsables de detalles (acordeón) --- */
+.btn-toggle {
+    background: #0e3d5d;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 18px;
+    margin-left: 15px;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(14,61,93,0.13);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-toggle:hover {
+    background: #1c4f7b;
+    transform: scale(1.07);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.5s;
+}
+
+.collapsible-content.active {
+    max-height: 900px; /* Suficiente para la mayoría de listas */
+    opacity: 1;
+    margin-top: 10px;
+    padding-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+    .collapsible-content.active {
+        max-height: 2000px;
+    }
+}
+
+/* Mejor presentación de bloques con acordeón en pantalla general */
+.collapsible-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  padding: 40px 0 15px 0;
+  background: linear-gradient(90deg, #f7fafc 60%, #f1f6fb 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 22px rgba(11, 17, 77, 0.07);
+  margin: 30px 0;
+  transition: background 0.4s;
+}
+
+.collapsible-section h2 {
+  font-size: 1.28rem;
+  margin-bottom: 20px;
+  color: #143154;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-align: center;
+  width: 100%;
+}
+
+.collapsible-section .btn-toggle {
+  margin: 0 auto 0 auto;
+  display: inline-block;
+  font-size: 1rem;
+  padding: 9px 28px;
+}
+
+/* Que el contenido colapsable no ocupe espacio ni sobresalga */
+.collapsible-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 12px !important;
+  margin: 0 !important;
+  transition: max-height 0.5s, opacity 0.4s;
+}
+
+.collapsible-content.active {
+  opacity: 1;
+  max-height: 1200px;
+  padding: 20px 10px 10px 10px !important;
+  margin-top: 10px !important;
+  border-top: 1px solid #c2d0e6;
+  animation: fadeIn 0.6s;
+}
+
+@media (max-width: 768px) {
+  .collapsible-section {
+    padding: 22px 0 10px 0;
+    margin: 18px 0;
+    min-height: 75px;
+  }
+  .collapsible-section h2 {
+    font-size: 1.09rem;
+    margin-bottom: 13px;
+  }
+  .collapsible-section .btn-toggle {
+    font-size: .96rem;
+    padding: 8px 19px;
+  }
+}
+
+/*Estilo de para los mosaicos*/
+.cv-mosaic {
+  margin: 50px auto 30px auto;
+  max-width: 1200px;
+}
+
+.mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.mosaic-card {
+  background: #f6f8fa;
+  border-radius: 18px;
+  padding: 34px 18px 22px 18px;
+  box-shadow: 0 3px 14px rgba(10,30,80,0.08);
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.19s, box-shadow 0.19s;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mosaic-card h3 {
+  font-size: 1.25rem;
+  color: #193456;
+  margin-bottom: 10px;
+}
+
+.mosaic-card p {
+  font-size: 1rem;
+  color: #516078;
+  margin: 0;
+}
+
+.mosaic-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 26px rgba(10,30,80,0.14);
+  background: #eaf2fc;
+}
+
+@media (max-width: 700px) {
+  .mosaic-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .mosaic-card {
+    min-height: 100px;
+    padding: 22px 8px 18px 8px;
+  }
+}
+
+.mosaic-section {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+}
+
+.mosaic-section.visible {
+    display: block;
+    opacity: 1;
+}
+
+.mosaic-section.visible {
+    background-color: #fdfdfd;
+    border-left: 5px solid #1c4f7b;
+}
+
+#main-header .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+#main-header .content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+#main-header .content p {
+    font-size: 2rem;
+    margin: 0;
+}
+@media (max-width: 700px) {
+  #main-header .content h1 { font-size: 1.25rem; }
+  #main-header .content { padding-top: 20px; padding-bottom: 14px; }
+}
+
+
